@@ -41,5 +41,19 @@ end
 # Part 3
 
 class BookInStock
-# YOUR CODE HERE
+  attr_accessor :isbn, :price
+  
+  def initialize(isbn,price)
+    raise ArgumentError.new("ISBN must be a String") if isbn.class != String
+    raise ArgumentError.new("Price must be a Float") if price.class != Float && price.class != Fixnum
+    raise ArgumentError.new("ISBN must not be empty") if isbn.empty?
+    raise ArgumentError.new("Price must be > 0") if price <= 0
+    
+    self.isbn  = isbn
+    self.price = price
+  end
+  
+  def price_as_string
+    sprintf("$%.2f",self.price)
+  end
 end
